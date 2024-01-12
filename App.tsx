@@ -2,10 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  console.warn('Generating waring message.')
+  // console.warn('Generating waring message.')
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>hello</Text>
+      <Text>This is my 1st app with with expo</Text>
       <StatusBar style="auto" />
     </View>
   );
