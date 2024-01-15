@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
   text: {
     color: "#9b4521",
     fontSize: 75,
-    // fontFamily: 'AmaticBold',
+    fontFamily: 'Amatic',
   },
 });
