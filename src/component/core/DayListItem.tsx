@@ -1,22 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
+import { Link } from "expo-router";
 
 type DayListItem = {
-    dayItem : number,
-}
+  dayItem: number;
+};
 
-const DayListItem = ({dayItem}: DayListItem) => {
+const DayListItem = ({ dayItem }: DayListItem) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.text}> {dayItem}</Text>
-    </View>
+    <Link href={`./day${dayItem}`} asChild>
+      <Pressable style={styles.card}>
+        <Text style={styles.text}> {dayItem}</Text>
+      </Pressable>
+    </Link>
   );
 };
 
 export default DayListItem;
 
 const styles = StyleSheet.create({
-  
   card: {
     flex: 1,
     aspectRatio: 1,
@@ -32,6 +34,6 @@ const styles = StyleSheet.create({
   text: {
     color: "#9b4521",
     fontSize: 75,
-    fontFamily: 'Amatic',
+    fontFamily: "Amatic",
   },
 });
