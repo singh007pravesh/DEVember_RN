@@ -3,9 +3,17 @@ import React, { useState } from "react";
 import { Stack, Link, router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-import { GestureDetector, Gesture ,Directions} from 'react-native-gesture-handler';
-import Animated,{ FadeIn, FadeOut,SlideOutLeft,SlideInRight } from 'react-native-reanimated';
-
+import {
+  GestureDetector,
+  Gesture,
+  Directions,
+} from "react-native-gesture-handler";
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideOutLeft,
+  SlideInRight,
+} from "react-native-reanimated";
 
 const OnboardingSteps = [
   {
@@ -36,37 +44,31 @@ const OnboardingScreen = () => {
   const continueScreen = () => {
     const islastIndex = onboardingIndex === OnboardingSteps.length - 1;
 
-    if (islastIndex ) {
+    if (islastIndex) {
       goBack();
     } else {
       SetonboardingIndex(onboardingIndex + 1);
     }
-    console.log('calling forward');
+    console.log("calling forward");
   };
 
   const backScreen = () => {
     const islastIndex = onboardingIndex === 0;
 
-    if (islastIndex ) {
+    if (islastIndex) {
       goBack();
     } else {
-      SetonboardingIndex(onboardingIndex -1 );
+      SetonboardingIndex(onboardingIndex - 1);
     }
-    console.log('calling back');
+    console.log("calling back");
   };
-
- 
 
   const goBack = () => {
     router.back();
   };
 
-  
-
-  
   //   Gesture.Simultaneous()
-  
- 
+
   const swipes = Gesture.Race(
     Gesture.Fling().direction(Directions.LEFT).onEnd(continueScreen),
     Gesture.Fling().direction(Directions.RIGHT).onEnd(backScreen)
@@ -95,23 +97,43 @@ const OnboardingScreen = () => {
       </View>
       <GestureDetector gesture={swipes}>
         <View style={styles.pageContent} key={onboardingIndex}>
-            <Animated.View style={styles.iconContainer} entering={FadeIn.delay(150)} exiting={FadeOut.delay(150)}>
-            <FontAwesome5 name={onboardingData.icon} size={78} color="#CEF202" />
-            </Animated.View>
-            <View style={styles.textContainer}>
-            <Animated.Text entering={SlideInRight} exiting={SlideOutLeft} style={styles.title}>{onboardingData.title}</Animated.Text>
-            <Animated.Text entering={SlideInRight.delay(150)} exiting={SlideOutLeft} style={styles.description}>{onboardingData.description}</Animated.Text>
-            </View>
+          <Animated.View
+            style={styles.iconContainer}
+            entering={FadeIn.delay(150)}
+            exiting={FadeOut.delay(150)}
+          >
+            <FontAwesome5
+              name={onboardingData.icon}
+              size={78}
+              color="#CEF202"
+            />
+          </Animated.View>
+          <View style={styles.textContainer}>
+            <Animated.Text
+              entering={SlideInRight}
+              exiting={SlideOutLeft}
+              style={styles.title}
+            >
+              {onboardingData.title}
+            </Animated.Text>
+            <Animated.Text
+              entering={SlideInRight.delay(150)}
+              exiting={SlideOutLeft}
+              style={styles.description}
+            >
+              {onboardingData.description}
+            </Animated.Text>
+          </View>
 
-            <View style={styles.buttonRow}>
+          <View style={styles.buttonRow}>
             <Pressable onPress={goBack}>
-                <Text style={styles.buttonText}>Skip</Text>
+              <Text style={styles.buttonText}>Skip</Text>
             </Pressable>
 
             <Pressable onPress={continueScreen} style={styles.button}>
-                <Text style={styles.buttonText}>Continue</Text>
+              <Text style={styles.buttonText}>Continue</Text>
             </Pressable>
-            </View>
+          </View>
         </View>
       </GestureDetector>
     </SafeAreaView>
@@ -138,7 +160,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 0.7,
-    justifyContent:"space-evenly",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   title: {
